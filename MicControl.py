@@ -39,7 +39,7 @@ def add_to_startup(file_path=""):
         bat_file.write(r'start "" %s' % file_path)
 
 #L'appel a la fct est en comntr parce que je l'ai deja testé et j ai pas envie de creer le .bat
-#add_to_startup("")
+add_to_startup("")
 
 #On teste si le Mic est eteint
 fs = 44100 #fréquence d'échantillonnage
