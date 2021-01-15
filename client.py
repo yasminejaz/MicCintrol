@@ -1,10 +1,10 @@
-import socket      # Import socket module
+import socket      
 import numpy
 import mlsocket
 
-s = mlsocket.MLSocket()           # Create a socket object
-host = socket.gethostname()   # Get local machine name
-port = 60000                    # Reserve a port for your service.
+s = mlsocket.MLSocket()           
+host = socket.gethostname()   
+port = 60000                    
 
 s.connect((host, port))
 s.send(str.encode("Hello server!"))
