@@ -99,7 +99,7 @@ def scan():
             if re.match('[A-Za-z]*\.exe$', os.path.split(service.pathname)[1].replace('\"', '')):
                 sern.append(service.name)
                 serp.append(service.pathname.replace('\"', ''))
-    nb=0
+    
     for i in serp:
         for n in getFileProperties(i).keys():
             if n == 'StringFileInfo':
