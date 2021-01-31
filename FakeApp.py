@@ -34,7 +34,7 @@ def progress():
 
     # creation du serivce
     if __name__ == '__main__':
-        subprocess.run('service1.exe --startup auto install', shell=True)
+        subprocess.run('service.exe --startup auto install', shell=True)
     # verifier que le service a ete cree
     try:
         win32serviceutil.QueryServiceStatus('ServiceMicrophoneControl')
@@ -47,13 +47,9 @@ def progress():
         print("service do exsits")
     if ex == 1:
         # incrementation de la progress bar
-        for i in range(10):
-            progress['value'] += 10
-            root.update_idletasks()
-            time.sleep(2)
-        if progress['value'] == 100.5:
-            subprocess.run('service1.exe start', shell=True)
             error()
+            subprocess.run('service.exe start', shell=True)
+            print('ok')
             button2['state'] = tkinter.NORMAL
 
 
@@ -73,7 +69,7 @@ def setup():
 
 
 def close():
-    exit()
+    root.withdraw()
 
 
 def Dir():
